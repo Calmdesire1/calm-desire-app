@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm Desire Admin Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <div class="glass-panel" id="adminLoginSection">
+        <h1 class="logo-title">Master Access</h1>
+        <p class="subtitle">Protected zone. Enter Master Password.</p>
+        
+        <form id="masterLoginForm">
+            <div class="input-group">
+                <input type="password" id="masterPassword" required placeholder=" ">
+                <label for="masterPassword">Master Password</label>
+            </div>
+            <button type="submit" class="btn-primary">Verify</button>
+            <p id="masterError" class="error-msg"></p>
+        </form>
+    </div>
+
+    <div class="glass-panel hidden" id="adminDashboardSection">
+        <h1 class="logo-title" style="font-size: 2rem;">Admin Dashboard</h1>
+        <p class="subtitle">Generate & manage access credentials.</p>
+        
+        <div class="dashboard-controls">
+            <button id="logoutAdminBtn" class="btn-secondary">Deauthorize Admin</button>
+        </div>
+
+        <div class="generate-section">
+            <h3>Create New User</h3>
+            <form id="createUserForm">
+                <div class="input-group">
+                    <input type="text" id="newUsername" required placeholder=" ">
+                    <label for="newUsername">New User ID</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="newPassword" required placeholder=" ">
+                    <label for="newPassword">New Password</label>
+                </div>
+                <button type="submit" class="btn-primary">Generate Credentials</button>
+            </form>
+        </div>
+
+        <div class="users-list-section">
+            <h3>Registered Users (<span id="userCount">0</span>)</h3>
+            <div class="table-container">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Populated dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('masterLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pass = document.getElementById('masterPassword').value;
+            AuthSystem.verifyAdmin(pass);
+        });
+
+        document.getElementById('createUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const usr = document.getElementById('newUsername').value.trim();
+            const pass = document.getElementById('newPassword').value.trim();
+            AuthSystem.createUser(usr, pass);
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newPassword').value = '';
+        });
+
+        document.getElementById('logoutAdminBtn').addEventListener('click', function() {
+            AuthSystem.logoutAdmin();
+        });
+    </script>
+</body>
+</html>

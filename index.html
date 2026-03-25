@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm Desire</title>
+    <!-- Dynamic Web App Styling -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#1a1a2e">
+</head>
+<body class="login-body">
+    <div class="glass-panel login-card">
+        <img src="logo.png" alt="Calm Desire Logo" class="app-logo">
+        <h1 class="logo-title">Calm Desire</h1>
+        <p class="subtitle">Enter your credentials to access the experience.</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" required placeholder=" ">
+                <label for="username">User ID</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+
+            <button type="submit" class="btn-primary">Access Cards</button>
+            <p id="errorMessage" class="error-msg"></p>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Separate script for login submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const usr = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            AuthSystem.login(usr, pass);
+        });
+    </script>
+</body>
+</html>

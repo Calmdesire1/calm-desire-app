@@ -1,0 +1,337 @@
+:root {
+    --bg-color: #0f0c29;
+    --bg-grad-1: #302b63;
+    --bg-grad-2: #24243e;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --accent: #E94560;
+    --accent-hover: #ff5e78;
+    --error: #ff4757;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-color), var(--bg-grad-1), var(--bg-grad-2));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Panels */
+.glass-panel, .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Typography */
+.app-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.logo-title {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #E94560);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Forms & Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 12px;
+    font-size: 0.8rem;
+    background: var(--bg-grad-1);
+    padding: 0 4px;
+    border-radius: 4px;
+    color: var(--accent);
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s;
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.error-msg {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    min-height: 20px;
+}
+
+/* Game Interface */
+.game-body {
+    flex-direction: column;
+}
+
+.progress-container {
+    position: absolute;
+    top: 30px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+}
+
+.card-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.glass-card {
+    height: 60vh;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+    position: relative;
+    user-select: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.card-number {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.card-quote {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: center;
+    font-style: italic;
+}
+
+.tap-hint {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95) translateZ(-50px); }
+    to { opacity: 1; transform: scale(1) translateZ(0); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* Admin Specific */
+.admin-body {
+    align-items: flex-start;
+    padding-top: 10vh;
+}
+
+.dashboard-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.generate-section {
+    background: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.generate-section h3, .users-list-section h3 {
+    margin-bottom: 1rem;
+    font-weight: 400;
+    color: var(--accent);
+}
+
+.table-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+th {
+    background: rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.btn-delete {
+    background: transparent;
+    color: var(--error);
+    border: 1px solid var(--error);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-delete:hover {
+    background: var(--error);
+    color: white;
+}
